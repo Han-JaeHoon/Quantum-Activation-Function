@@ -1,0 +1,6 @@
+torch
+torchvision
+pennylane
+pillow
+tqdm
+sympy
