@@ -77,15 +77,62 @@ python3 main.py
 
 - $Lemma1$
 
+Given Input vector $\vec{x} \in [-1, 1]^{N_{in}} $, weight matrix $W:= \begin{pmatrix}
+    \vec{w}_0 \\ \vec{w}_1 \\ \vdots \\ \vec{w}_{N_w - 1}
+\end{pmatrix} $ , bias vector $\vec{b} \in [-1, 1]^{N_w} $, and given registers s, q with p, n qubit respectively, such that $n = \left\lceil \log_2(N_{in} + 3) \right\rceil, p = \left\lceil \log_2(N_w) \right\rceil $, then, there exists a quantum circuit $U_{\mathbf z}(\vec{x}, W, \vec{b}) $ such that
+
+${}_{s}\langle{i}| {}_{q}\langle N-1|U_{\mathbf z}(\vec{x}, W, \vec{b})\ket{0}_q \ket{0}_s = {\vec{w}_i \cdot {\vec{x} + 1} \over {N_{in} + 1}} \equiv {z_i \over {{2^{p/2}}}} \quad \text{ for } i = 0, 1, \cdots , N_{w} - 1$
+
+$\text{where } \ket{0}_q \equiv \ket{0}^{\otimes n}, \ket{0}_s \equiv \ket{0}^{\otimes p}, \ket{N-1}_q \equiv \ket{1}^{\otimes n},\text{ and } \vec{w}_i \in [-1, 1]^{N_{in}} \text{ for } i = 0, 1, \cdots, N_w - 1$
+
 ![2d](3.3_Experiment/imgs/lemma1.png)|
 
 
 - $Theorem1$
 
+Let $z_i := \left( \vec{w}_i \cdot \vec{x} + b_i \right) / \left( N_{in} + 1 \right)$ where $\vec{x}, \vec{w}_i \in [-1, 1]^{N_{in}}$ and $b_i \in [-1, 1]$ for $i = 0, \cdots, N_w - 1$. Let $q, a, \text{ and } s$ be quantum registers of $n, d, \text{ and } p$ qubits respectively, with $ N = 2^n \ge N_{in} + 3 $ and $ p = \left\lceil \log_2(N_{w}) \right\rceil$. Then there exist a quantum circuit which transforms the three registers from the initial state $\ket{0}_s \ket{0}_a \ket{0}_q$ to (p+n+d)-qubit entangled state $\ket{\psi_{\mathbf z}^d}$ of the form
+   $
+        \ket{\psi_{\mathbf z}^d} = \ket{\psi_{\mathbf z}^d}_{\perp} + {1 \over {2^{(d + p) / 2}}}\sum_{i=0}^{N_w - 1}\left( \ket{i}_{s} \ket{z_i}_{a}^{\otimes d} \ket{N-1}_q \right)
+   $
+    where
+   $
+        \ket{N-1}\bra{N-1}_q \ket{\psi_\mathbf{z}^d}_{\perp} = \mathbf{0}
+   $
+    and
+    $
+        \ket{z_i} \equiv \ket{0} + z_i\ket{1}
+   $
+    The circuit is expressed by $S_V X_q^{\otimes n} H_s^{\otimes p}$ where X is Pauli-X, H is Hadamard gate and
+    $
+        S_V = V_{d-1} \cdots V_1 V_0
+   $
+    with
+    $
+        V_m = C_{a_m}S_{\mathbf{z}}(\vec{x}, W, \vec{b})_q C_{a_m}X^{\otimes n}_q C_q^nH_{a_m} \quad \text{ for } m = 0, 1, \dots, d - 1
+   $
+
 ![2d](3.3_Experiment/imgs/Theorem1.png)|
 
 
 - $Theorem2$
+
+    Let $\{f_k, k = 1, \ldots, d\}$ be the family of polynomials in $z$ defined by the following recursive law:
+
+$f_k(z) = f_{k-1}(z) \cos \vartheta_{k-1} - z^k \sin \vartheta_{k-1}, \quad k = 1, \ldots, d.$
+with $f_0(z) = 1$ and $\vartheta_k \in \left
+[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ for any $k = 0, \ldots, d-1$.
+
+Then there exists a family $\{U_k, k = 1, \ldots, d\}$ of unitary operators such that
+$
+{}_{a}\bra{0} U_k \ket{z}_a^{\otimes d} = f_k(z).
+$
+
+These unitary operators are, in turn, defined by the recursive law:
+$
+U_k = C_{a_0} X_{a_k} \overline{C}_{a_k} R_y(2 \vartheta_{k-1})_{a_0} U_{k-1}, \quad k = 1, \ldots, d,
+$
+with $U_0 = \mathbb{1}$.
+
 
 ![2d](3.3_Experiment/imgs/Theorem2.png)|
 
