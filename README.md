@@ -28,12 +28,12 @@ python3 main.py
 
 
 ## 1d-function
-  - PQC
+  - Model
     ![2d](2.2_Comparison_of_ML_and_QML/imgs/pqc_1d_color.png)|
 
 
-- Neumerical results
-  | layer | $\sin{x}$|$\tanh{x}$ | $\frac{1}{2{\pi}x}$ |
+- Numerical results
+  | layer | $\sin{x}$|$\tanh{x}$ | $\frac{1}{2{\pi}}x$ |
   |---|---|---|---|
   |MLP (3 layers) | 0.0 | 0.0 | 0.0| \\
   |MLP (4 layers) | 0.0 | 0.0 | 0.0 |
@@ -51,7 +51,7 @@ python3 main.py
 
 ## 2d-function
 
-  - PQC
+  - Model
     ![2d](2.2_Comparison_of_ML_and_QML/imgs/pqc_2d_color.png)|
 
 
