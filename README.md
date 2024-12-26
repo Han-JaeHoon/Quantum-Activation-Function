@@ -4,6 +4,9 @@
 
 Implement Quantum Multi-Perceptron Layer with Arbitrary Activation Function
 
+you can see our project detailed in this [report](https://drive.google.com/file/d/1kGv0sO4jSNgf3AKtDqZVUwL6kSgcO_Y6/view?usp=drive_link).
+
+
 # HOW TO
 
 ```bash
